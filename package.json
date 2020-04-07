@@ -1,0 +1,28 @@
+{
+  "name": "easyUnderstandDataStructuresandAlgorithms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open",
+    "clean": "rimraf dist/",
+    "build": "npm run clean && webpack --env.production=true"
+  },
+  "keywords": [],
+  "author": "xiaopingbuxiao <1210774823@qq.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "glob": "^7.1.6",
+    "html-webpack-plugin": "^4.0.4",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
