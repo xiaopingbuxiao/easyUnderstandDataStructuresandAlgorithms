@@ -100,7 +100,7 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
   // 报错的原因是 如果一个对象字面量存在任何“目标类型”不包含的属性时 
 let mySquare = createSquare({ colour: "red", width: 100 }); */
 
-let mySquare = createSquare({ colour: "red", width: 100 } as SquareConfig)  // 类型断言和 不适用对象自变量都可以绕过检查 但不是最好的解决方法
+let mySquare = createSquare({ colour: "red", width: 100 } as SquareConfig)  // 类型断言和 不使用对象自变量都可以绕过检查 但不是最好的解决方法
 let mySquare1 = createSquare(<SquareConfig>{ colour: "red", width: 100 })
 let squareConfig = { colour: "red", width: 100 }
 let mySquare2 = createSquare(squareConfig)
@@ -140,5 +140,322 @@ let mySearch: SearchFunc = (src: string, sub: string, ): boolean => {
   return result > -1
 }
 
+/**
+ * 可索引的类型
+ */
+
+interface StringArray {
+  [a: number]: string
+}
+let myArr: StringArray = ['hello', 'world']
+
+console.log(myArr[1])
+
+interface StringMap { // 数字索引的类型必须是字符串索引的子类型
+  [name: string]: number | string,
+  [index: number]: string
+}
+
+let myMap: StringMap = {
+  a: 1,
+  1: '11'
+}
+
+/**
+ * 类类型
+ * 实现接口
+ */
+
+interface ClockInterface {
+  currentTime: Date
+}
+
+class Clock implements ClockInterface {
+  currentTime: Date
+  constructor() {
+    this.currentTime = new Date()
+  }
+}
+console.log(new Clock())
+
+interface ClockInterface1 {
+  currentTime: Date,
+  setTime(d: Date)
+}
+class Clock1 implements ClockInterface1 {
+  currentTime: Date
+  setTime(d: Date) {
+    this.currentTime = d
+  }
+}
 
 
+
+// interface ClockConstructor {
+//   new(hour: number, minute: number)
+// }
+
+// class Clock2 implements ClockConstructor {
+//   constructor(h: number, m: number) { }
+// }
+
+
+interface ClockConstructor {
+  new(hour: number, minute: number): ClockInterface2
+}
+interface ClockInterface2 {
+  tick()
+}
+
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface2 {
+  return new ctor(hour, minute)
+}
+
+
+class DigitalClock implements ClockInterface2 {
+  constructor(h: number, m: number) { }
+  tick() {
+    throw new Error("Method not implemented.")
+  }
+}
+
+class AnalogClock implements ClockInterface2 {
+  constructor() { }
+  tick() {
+    throw new Error("Method not implemented.")
+  }
+}
+
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+
+
+/** 
+ * 继承接口 
+ */
+
+interface Shape {
+  color: string
+}
+
+interface Square extends Shape {
+  sideLength: number
+}
+
+let square: Square = { color: '#fff', sideLength: 10 }
+
+// 一个借口可以继承多个接口，创建出多个接口的合成接口
+
+interface PenStroke {
+  penWidth: number
+}
+
+interface Square1 extends Shape, PenStroke {
+  sideLength: number
+}
+
+
+let square1: Square1 = { color: '#fff', sideLength: 10, penWidth: 10 }
+
+/**
+ * 混合类型
+ */
+interface Counter {
+  (start: string): number,
+  interval: number,
+  reset(): void,
+}
+
+function getCounter(): Counter {
+  // let counter = function (start: string) { } as Counter
+  let counter = <Counter>function (start: string) { }
+  counter.interval = 123
+  counter.reset = function () { return 111 }
+  return counter
+}
+
+
+const counter = getCounter()
+console.log(counter)
+console.dir(counter)
+
+/**
+ * 类 各种修饰符 默认为 pubilc    private可以继承  但是不能被子类更改或者获取 只能通过继承自父类的方法来对 private的操作
+ * protected 和 private 的使用几乎一致，唯一的区别为 protected 是可以再子类中通过方法来获取的
+ * readonly 只能在声明或者 constructor 中被赋值
+ */
+
+class Animal {
+  private name: string = 'sss'      // 其实他还是类的实例属性，只是在ts中不让获取了而已
+  constructor(theName: string) {
+    this.name = theName
+  }
+}
+
+class Rhino extends Animal {
+  constructor() { super("Rhino"); }
+}
+
+class Employee {
+  private name: string;
+  constructor(theName: string) { this.name = theName; }
+}
+let animal = new Animal("Goat");
+let rhino = new Rhino();
+let employee = new Employee("Bob");
+animal = rhino    // 此时的 private 是继承来到，所以被成为是同一个类型，认为是可以赋值的
+// animal = employee  此时是会报错的，因为两个 private 被认为是不同的值
+
+console.log('--------------------------------------------------------------------')
+
+
+
+
+
+
+
+
+class Person {
+  protected name: string;
+  constructor(name: string) { this.name = name; }
+}
+class Employee1 extends Person {
+  private department: string;
+  constructor(name: string, department: string) {
+    super(name)
+    this.department = department;
+  }
+  public getElevatorPitch() {
+    return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+  }
+}
+
+
+let howard = new Employee1("Howard", "Sales");
+
+
+// console.log(new Person('hello').name) //
+// console.log(howard.name); // 错误
+
+class A {
+  readonly a: number = 1
+  readonly b: string
+  constructor(bb) {
+    this.b = bb
+  }
+}
+
+/**
+ *  在 ts 中 如果给 constructor 中的参数增加了限定符，就以为着 这个参数被作为了 累的属性，至于这个属性是什么样的 
+ *  就是限定符的作用
+ */
+
+class Octopus {
+  readonly numberOfLegs: number = 8;
+  constructor(readonly name: string) {
+
+  }
+}
+console.log(new Octopus('sss'))
+
+/**
+ * 存取器  如果只定义了 get 的话 会默认为 readonly 
+ */
+
+
+class AA {
+  private _value: string;
+  public get value(): string {
+    return this._value;
+  }
+  public set value(v: string) {
+    this._value = v;
+  }
+}
+const aa = new AA()
+aa.value = '11'
+console.log(aa.value)
+
+
+/**
+ * 抽象类 abstract
+ */
+
+
+abstract class Department {
+  constructor(public name: string) {
+  }
+  printName(): void {
+    console.log('Department name: ' + this.name);
+  }
+  abstract printMeeting(): void; // 必须在派生类中实现
+}
+
+class AccountingDepartment extends Department {
+  constructor() {
+    super('Accounting and Auditing'); // 在派生类的构造函数中必须调用 super()
+  }
+  printMeeting(): void {
+    console.log('The Accounting Department meets each Monday at 10am.');
+  }
+
+  generateReports(): void {
+    console.log('Generating accounting reports...');
+  }
+}
+// let department:Department = new Department() // 抽象类无法世界实例化
+// 继承抽象类必须重写抽象类中的所有抽象方法
+
+class Greeter {
+  static standardGreeting = "Hello, there";
+  greeting: string;
+  greet() {
+    if (this.greeting) {
+      return "Hello, " + this.greeting;
+    }
+    else {
+      return Greeter.standardGreeting;
+    }
+  }
+}
+
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
+
+let greeterMaker: typeof Greeter = Greeter;
+greeterMaker.standardGreeting = "Hey there!";
+
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+
+
+/**
+ * 函数 不确定参数的时候 必须将后面的参数收集起来
+ */
+function buildName(firstName: string, ...restOfName: string[]) {
+  return firstName + " " + restOfName.join(" ");
+}
+
+let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
+console.log(employeeName)
+
+
+let deck = {
+  suits: ["hearts", "spades", "clubs", "diamonds"],
+  cards: Array(52),
+  createCardPicker: function () {
+    // NOTE: the line below is now an arrow function, allowing us to capture 'this' right here
+    return () => {
+      let pickedCard = Math.floor(Math.random() * 52);
+      let pickedSuit = Math.floor(pickedCard / 13);
+
+      return { suit: this.suits[pickedSuit], card: pickedCard % 13 };
+    }
+  }
+}
+
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
+
+alert("card: " + pickedCard.card + " of " + pickedCard.suit);

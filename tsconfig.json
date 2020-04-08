@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "module": "system",
-    "sourceMap": true
+    "sourceMap": true,
+    "target": "ES5",
+    "noImplicitThis": true
   },
   "include": [
     "src/**/*"
