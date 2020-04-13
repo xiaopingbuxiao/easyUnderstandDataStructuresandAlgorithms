@@ -458,4 +458,68 @@ let deck = {
 let cardPicker = deck.createCardPicker();
 let pickedCard = cardPicker();
 
-alert("card: " + pickedCard.card + " of " + pickedCard.suit);
+console.log("card: " + pickedCard.card + " of " + pickedCard.suit);
+
+
+function identity(arg: number): number {
+  return arg;
+}
+
+// function identity1(arg: string): any {
+//   return arg;
+// }
+
+
+function identity1<T>(args: T): T {
+  return args
+}
+const identityStr = <string>identity1('aaa')
+
+
+
+interface GenericIdentityFn<T> {
+  (arg: T): T
+}
+function identity2<T>(arg: T): T {
+  return arg
+}
+
+const myIdentity: GenericIdentityFn<string> = identity2
+
+class GenericNumber<T>{
+  zeroValue: T;
+  add: (x: T, y: T) => T
+}
+let myGenericNumber = new GenericNumber<number>();
+
+myGenericNumber.zeroValue = 1
+myGenericNumber.add = function (x: number, y: number): number {
+  return x + y
+}
+/**
+ * 对泛型进行约束
+ */
+interface LengthSize {
+  length: number
+}
+function identity3<T extends LengthSize>(arg: T): T {
+  return arg
+}
+
+identity3('3') // identity3(3) 会报错 
+
+
+
+enum Response1 {
+  No = 0,
+  Yes = 1
+}
+function respond(recipient: string, message: Response1): void {
+  // ...
+}
+
+respond("Princess Caroline", Response1.No)
+
+window.onmousedown = function(mouseEvent) {
+  console.log(mouseEvent.button);  //<- Error
+};
