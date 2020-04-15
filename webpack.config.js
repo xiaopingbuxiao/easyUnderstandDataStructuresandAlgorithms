@@ -2,15 +2,15 @@ const glob = require('glob')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const setMPA = () => {
   const entry = {}
   const htmlWebpackPlugins = []
-  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.ts'))
+  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.[tj]s'))
   Object.keys(entryFiles).map(index => {
     const entryFile = entryFiles[index]
-    const match = entryFile && entryFile.match(/src\/(.*)\/index.ts$/)
+    const match = entryFile && entryFile.match(/src\/(.*)\/index.[tj]s$/)
     const pageName = match && match[1]
     entry[pageName] = entryFile
     htmlWebpackPlugins.push(new HtmlWebpackPlugin({
@@ -65,8 +65,19 @@ module.exports = (env) => {
         }
       ]
     },
+    devServer: {
+      quiet: true,
+      port:3000
+    },
     plugins: [
       // new CleanWebpackPlugin()
+      new FriendlyErrorsWebpackPlugin({
+        compilationSuccessInfo: {
+          messages: ['You application is running here http://localhost:3000'],
+          notes: ['compilation success.................🍎🍎'],
+          clearConsole: false,
+        },
+      })
     ].concat(htmlWebpackPlugins)
   }
 }
