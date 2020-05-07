@@ -2,6 +2,7 @@ const glob = require('glob')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 
 const setMPA = () => {
@@ -47,16 +48,15 @@ module.exports = (env) => {
     },
     mode: production ? 'production' : 'development',
     devtool: 'source-map',
-    stats: {
-      modules: false,
-      children: false,
-      chunks: false,
-      chunkModules: false
+    devServer: {
+      host: 'localhost',
+      port: 3000,
+      quiet: true
     },
     module: {
       rules: [
         {
-          test: /\.ts$/,
+          test: /\.(?:ts|js)$/,
           exclude: /(node_modules|bower_components)/,
           use: [
             'babel-loader',
@@ -66,6 +66,11 @@ module.exports = (env) => {
       ]
     },
     plugins: [
+      new FriendlyErrorsWebpackPlugin({
+        compilationSuccessInfo: {
+          messages: [`Your application is running here: http://localhost:3000`],
+        },
+      }),
       // new CleanWebpackPlugin()
     ].concat(htmlWebpackPlugins)
   }

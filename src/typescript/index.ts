@@ -516,6 +516,7 @@ enum Response1 {
 }
 function respond(recipient: string, message: Response1): void {
   // ...
+  
 }
 
 respond("Princess Caroline", Response1.No)
