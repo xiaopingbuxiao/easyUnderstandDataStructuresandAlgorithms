@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
-const setMPA = () => {
+const setMPA = (ext) => {
   const entry = {}
   const htmlWebpackPlugins = []
-  const entryFiles = glob.sync(path.join(__dirname, './src/*/index.[tj]s'))
+  const entryFiles = glob.sync(path.join(__dirname, `./src/*/index.${ext}`))
   Object.keys(entryFiles).map(index => {
     const entryFile = entryFiles[index]
     const match = entryFile && entryFile.match(/src\/(.*)\/index.[tj]s$/)
@@ -35,9 +35,9 @@ const setMPA = () => {
 
 
 
-const { entry, htmlWebpackPlugins } = setMPA()
 module.exports = (env) => {
-  const { production } = env || {}
+  const { production, ext } = env || {}
+  const { entry, htmlWebpackPlugins } = setMPA(ext)
   return {
     entry: entry,
     output: {
@@ -46,7 +46,7 @@ module.exports = (env) => {
       publicPath: ''
     },
     mode: production ? 'production' : 'development',
-    devtool: 'source-map',
+    devtool: production ? 'none' : 'source-map',
     devServer: {
       host: 'localhost',
       port: 3000,
@@ -56,7 +56,7 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.(?:ts|js)$/,
-          exclude: /(node_modules|bower_components)/,
+          include:path.join(__dirname,'./src'),
           use: [
             'babel-loader',
             'ts-loader'
@@ -66,14 +66,9 @@ module.exports = (env) => {
     },
     devServer: {
       quiet: true,
-      port:3000
+      port: 3000
     },
     plugins: [
-      new FriendlyErrorsWebpackPlugin({
-        compilationSuccessInfo: {
-          messages: [`Your application is running here: http://localhost:3000`],
-        },
-      }),
       // new CleanWebpackPlugin()
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {

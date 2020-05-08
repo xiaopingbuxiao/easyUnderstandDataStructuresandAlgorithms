@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "webpack-dev-server --open",
+    "serve:js": "webpack-dev-server --config webpack.config.js --env.ext=js",
+    "serve:ts": "webpack-dev-server --config webpack.config.js --env.ext=ts",
     "clean": "rimraf dist/",
-    "build": "npm run clean && webpack --env.production=true"
+    "build:js": "npm run clean && webpack --env.production=true --env.ext=js",
+    "build:ts": "npm run clean && webpack --env.production=true --env.ext=ts"
   },
   "keywords": [],
   "author": "xiaopingbuxiao <1210774823@qq.com>",
