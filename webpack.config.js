@@ -10,8 +10,10 @@ const setMPA = (ext) => {
   const entryFiles = glob.sync(path.join(__dirname, `./src/*/index.${ext}`))
   Object.keys(entryFiles).map(index => {
     const entryFile = entryFiles[index]
-    const match = entryFile && entryFile.match(/src\/(.*)\/index.[tj]s$/)
+    const reg = new RegExp(`src\/(.*)\/index.${ext}$`)
+    const match = entryFile && entryFile.match(reg)
     const pageName = match && match[1]
+    console.log(pageName)
     entry[pageName] = entryFile
     htmlWebpackPlugins.push(new HtmlWebpackPlugin({
       template: path.join(__dirname, `./pages/${pageName}.html`),
@@ -56,7 +58,7 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.(?:ts|js)$/,
-          include:path.join(__dirname,'./src'),
+          include: path.join(__dirname, './src'),
           use: [
             'babel-loader',
             'ts-loader'

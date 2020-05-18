@@ -9,7 +9,8 @@
     "serve:ts": "webpack-dev-server --config webpack.config.js --env.ext=ts",
     "clean": "rimraf dist/",
     "build:js": "npm run clean && webpack --env.production=true --env.ext=js",
-    "build:ts": "npm run clean && webpack --env.production=true --env.ext=ts"
+    "build:ts": "npm run clean && webpack --env.production=true --env.ext=ts",
+    "test:js": "mocha --require @babel/register --bail test/index.js"
   },
   "keywords": [],
   "author": "xiaopingbuxiao <1210774823@qq.com>",
@@ -17,10 +18,14 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
     "babel-loader": "^8.1.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.0.4",
+    "mocha": "^7.1.2",
     "rimraf": "^3.0.2",
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",
