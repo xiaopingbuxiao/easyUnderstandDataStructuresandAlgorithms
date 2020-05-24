@@ -10,7 +10,8 @@
     "clean": "rimraf dist/",
     "build:js": "npm run clean && webpack --env.production=true --env.ext=js",
     "build:ts": "npm run clean && webpack --env.production=true --env.ext=ts",
-    "test:js": "mocha --require @babel/register --bail test/index.js"
+    "test:js": "mocha --require @babel/register --bail test/index.js",
+    "test:js debugge": "mocha --require @babel/register --watch --timeout 999999 --colors ./test/index.js --inspect-brk=24351 "
   },
   "keywords": [],
   "author": "xiaopingbuxiao <1210774823@qq.com>",
@@ -20,9 +21,7 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
     "babel-loader": "^8.1.0",
-    "babel-register": "^6.26.0",
     "chai": "^4.2.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.0.4",
     "mocha": "^7.1.2",
@@ -33,7 +32,5 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
-  "dependencies": {
-    "friendly-errors-webpack-plugin": "^1.7.0"
-  }
+  "dependencies": {}
 }
