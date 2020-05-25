@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Stack } from '../src/stack/stack-array.js'
+import { Stack } from '../src/js/stack-array.js'
 
 
 
