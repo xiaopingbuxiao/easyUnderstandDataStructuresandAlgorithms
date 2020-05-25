@@ -30,6 +30,7 @@ const setMPA = (ext) => {
       }
     }))
   })
+  console.log(entry, htmlWebpackPlugins)
   return {
     entry, htmlWebpackPlugins
   }
@@ -39,6 +40,7 @@ const setMPA = (ext) => {
 
 module.exports = (env) => {
   const { production, ext } = env || {}
+  const loaders = ext === 'js' ? ['babel-loader'] : ['babel-loader', 'ts-loader']
   const { entry, htmlWebpackPlugins } = setMPA(ext)
   return {
     entry: entry,
@@ -59,10 +61,7 @@ module.exports = (env) => {
         {
           test: /\.(?:ts|js)$/,
           include: path.join(__dirname, './src'),
-          use: [
-            'babel-loader',
-            'ts-loader'
-          ]
+          use: loaders
         }
       ]
     },

@@ -22,6 +22,7 @@
     "@babel/register": "^7.9.0",
     "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.0.4",
     "mocha": "^7.1.2",

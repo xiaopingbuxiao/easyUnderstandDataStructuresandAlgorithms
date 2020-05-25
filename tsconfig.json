@@ -6,6 +6,6 @@
     "noImplicitThis": true
   },
   "include": [
-    "src/**/*"
+    "src/typescript/*"
   ],
 }
