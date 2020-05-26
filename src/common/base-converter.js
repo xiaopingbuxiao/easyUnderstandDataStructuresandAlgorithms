@@ -1,5 +1,5 @@
 
-import { Stack } from '../js/stack-array'
+import { Stack } from '../javascript/stack-array'
 
 
 export function decimalToBinary(decNumber) {

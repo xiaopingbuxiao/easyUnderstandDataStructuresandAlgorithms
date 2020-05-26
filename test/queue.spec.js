@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Queue } from '../src/js/queue'
+import { Queue } from '../src/javascript/queue'
 
 
 describe('Queue', () => {
