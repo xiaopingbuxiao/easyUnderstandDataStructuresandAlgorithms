@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Deque } from '../src/javascript/deque'
+import { Deque } from '../src/javascript/data-structures/deque'
 
 
 describe('Deque的测试（双端队列）', () => {

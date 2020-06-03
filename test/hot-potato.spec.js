@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { hotPotato } from '../src/other/hot-potato'
+import { hotPotato } from '../src/javascript/other/hot-potato'
 
 
 describe('循环队列来实现击鼓传花', () => {

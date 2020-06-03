@@ -3,7 +3,7 @@
  * 回文是正反都能读通的单词、词组、数或一系列字符的序列，例如 madam 或 racecar。
  * 使用双端队列来解决的方法如下
  */
-import { Deque } from '../javascript/deque'
+import { Deque } from '../data-structures/deque'
 
 
 

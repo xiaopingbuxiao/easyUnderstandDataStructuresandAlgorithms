@@ -1,6 +1,6 @@
 
 import { expect } from 'chai'
-import { Stack } from '../src/javascript/stack.js'
+import { Stack } from '../src/javascript/data-structures/stack.js'
 
 
 

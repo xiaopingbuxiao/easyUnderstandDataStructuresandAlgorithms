@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { palindromeChecker } from '../src/other/palindrome-checker'
+import { palindromeChecker } from '../src/javascript/other/palindrome-checker'
 
 describe('Palindrome', () => {
   it('Palindrome Checker', () => {

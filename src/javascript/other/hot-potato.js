@@ -1,5 +1,5 @@
 
-import { Queue } from '../javascript/queue'
+import { Queue } from '../data-structures/queue'
 
 
 
