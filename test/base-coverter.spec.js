@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 
-import { decimalToBinary, baseConverter } from '../src/common/base-converter'
+import { decimalToBinary, baseConverter } from '../src/other/base-converter'
 
 
 
