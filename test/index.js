@@ -9,5 +9,5 @@ describe('测试文件', () => {
   // require('./hot-potato.spec') // 击鼓传花游戏
   // require('./base-coverter.spec') // 进制转换
   require('./pailindrome-checker.spec') // 回文检查器使用双端队列实现
-
+  require('./linked-list.spec')
 });
