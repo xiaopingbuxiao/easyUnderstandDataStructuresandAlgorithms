@@ -7,5 +7,17 @@ export class Node {
     this.next = next
   }
 }
+/** 
+ * 双向链表使用
+ */
+export class DoublyNode extends Node {
+  constructor(el, next, prev) {
+    super(el, next)
+    this.prev = prev
+  }
+}
+
+
+
 
 
