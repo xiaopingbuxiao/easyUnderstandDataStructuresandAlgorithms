@@ -11,4 +11,5 @@ describe('测试文件', () => {
   require('./pailindrome-checker.spec') // 回文检查器使用双端队列实现
   require('./linked-list.spec') // 链表
   require('./doubly-linked-list.spec') // 双向链表
+  require('./circular-linked-list.spec')
 });

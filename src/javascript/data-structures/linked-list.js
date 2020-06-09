@@ -98,7 +98,7 @@ export class LinkedList {
     }
     let objString = `${this.head.ele}`
     let current = this.head.next
-    for (let i = 0; i < this.size() && current != null; i++) {
+    for (let i = 1; i < this.size() && current != null; i++) {
       objString = `${objString},${current.ele}`
       current = current.next
     }
