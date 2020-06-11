@@ -1,5 +1,7 @@
 
-
+/**
+ * 双端队列
+ */
 
 export class Deque {
   constructor() {
