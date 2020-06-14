@@ -13,5 +13,5 @@ describe('测试文件', () => {
   require('./doubly-linked-list.spec') // 双向链表
   require('./circular-linked-list.spec') // 循环链表
   require('./sorted-linked-list.spec') // 有序链表
-  
+  require('./set.spec') // 集合
 });
