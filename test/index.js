@@ -14,5 +14,6 @@ describe('测试文件', () => {
   // require('./circular-linked-list.spec') // 循环链表
   // require('./sorted-linked-list.spec') // 有序链表
   // require('./set.spec') // 集合
-  require('./dictionary.spec') // 字典
+  // require('./dictionary.spec') // 字典
+  require('./hash-table.spec')
 });
