@@ -16,5 +16,6 @@ describe('测试文件', () => {
   // require('./set.spec') // 集合
   // require('./dictionary.spec') // 字典
   // require('./hash-table.spec') // 散列集  hashTable
-  require('./hash-table-separate-chaining.spec') // 使用链表来结局hash-table的冲突 
+  // require('./hash-table-separate-chaining.spec') // 使用链表来结局hash-table的冲突 
+  require('./hash-table-linear-probing-lazy.spec')
 });
