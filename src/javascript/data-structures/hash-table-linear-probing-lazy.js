@@ -1,6 +1,13 @@
 import { defaultToString } from '../utils'
 import { ValuePairLazy } from './models/value-pair-lazy'
 
+/**
+ * 解决hash-table的冲突问题  线性探查
+ * 如果存在 就一只向后推 
+ * 删除的时候进行一个假的删除
+ * 
+ * 
+ */
 
 
 export class HashTableLinearProbingLazy {
