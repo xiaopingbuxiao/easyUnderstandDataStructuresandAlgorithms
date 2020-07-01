@@ -1,6 +1,6 @@
 
 /**
- * 队列
+ * 队列 先进先出
  */
 export class Queue {
   constructor() {

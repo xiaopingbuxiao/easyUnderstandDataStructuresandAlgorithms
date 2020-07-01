@@ -1,4 +1,7 @@
 
+/**
+ * 栈后进先出
+ */
 export class Stack {
   constructor() {
     this.count = 0

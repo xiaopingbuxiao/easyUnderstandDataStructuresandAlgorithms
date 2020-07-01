@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // function fn(n) {
+    //   console.trace()
+    //   if (n === 1 || n === 0) {
+    //     return n
+    //   }
+    //   return n * fn(n - 1)
+    // }
+    // // console.log(fn(3))
+
+    // function fibonacci(n) {
+    //   if (n < 1) return 0
+    //   if (n < 2) return 1
+    //   return fibonacci(n - 1) + fibonacci(n - 2)
+    // }
+    // console.time('bb')
+    // console.log(fibonacci(40))
+    // console.timeEnd('bb')
+
+    // // function Fib(n, n1, n2) {
+    // //   if (n === 0) return
+    // //   return Fib(n - 1, n1 + n2, n1)
+    // // }
+    "use strict"
+    function Fib(n, n1, n2) {
+      if (n == 1) {
+        return n2
+      }
+      return Fib(n - 1, n2, n1 + n2)
+    }
+    console.log(Fib(10,0,1))
+    console.time('a')
+    // console.log(Fib(40,0,1))
+    // console.timeEnd('a')
+  </script>
+</body>
+
+</html>
