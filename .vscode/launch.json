@@ -1,25 +1,22 @@
 {
   "configurations": [
     // --inspect-brk=24351 node_modules\mocha\bin\_mocha --require @babel/register --watch --timeout 999999 --colors
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch via NPM",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "test:js debugge"
-      ],
-      "port": 24351,
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    }
-    
-    
-
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "Launch via NPM",
+    //   "runtimeExecutable": "npm",
+    //   "runtimeArgs": [
+    //     "run",
+    //     "test:js debugge"
+    //   ],
+    //   "port": 24351,
+    //   "skipFiles": [
+    //     "<node_internals>/**"
+    //   ]
+    // }
     /* window下莫名报错 改完使用 npm 启动的形式*/
-    /* {
+    {
       "type": "node",
       "request": "launch",
       "name": "Mocha Tests",
@@ -39,6 +36,6 @@
       "skipFiles": [
         "<node_internals>/**"
       ]
-    } */
+    }
   ]
 }

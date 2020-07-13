@@ -19,5 +19,6 @@ describe('测试文件', () => {
   // require('./hash-table-separate-chaining.spec') // 使用链表来结局hash-table的冲突 
   // require('./hash-table-linear-probing-lazy.spec') // 线性探查解决hash-table的冲突问题  惰性删除
   // require('./hash-table-linear-probing.spec') // 线性探查解决hash-table冲突问题
-  require('./binary-search-tree.spec')
+  // require('./binary-search-tree.spec') // 二叉树
+  require('./avl-tree.spec')
 });
