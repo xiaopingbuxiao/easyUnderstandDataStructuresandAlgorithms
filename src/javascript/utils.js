@@ -32,3 +32,15 @@ export function defaultToString(item) {
   }
   return item.toString()
 }
+
+/*将数组两个位置的值交换 */
+export function swap(array, a, b) {
+  /* const temp = array[a];
+  array[a] = array[b];
+  array[b] = temp; */
+  [array[a], array[b]] = [array[b], array[a]];
+}
+
+export function reverseCompare(compareFn) {
+  return (a, b) => compareFn(b, a);
+}

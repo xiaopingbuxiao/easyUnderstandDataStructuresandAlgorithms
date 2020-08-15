@@ -20,5 +20,6 @@ describe('测试文件', () => {
   // require('./hash-table-linear-probing-lazy.spec') // 线性探查解决hash-table的冲突问题  惰性删除
   // require('./hash-table-linear-probing.spec') // 线性探查解决hash-table冲突问题
   // require('./binary-search-tree.spec') // 二叉树
-  require('./avl-tree.spec')
+  // require('./avl-tree.spec')     // 自平衡二叉树
+  require('./heap.spec')
 });

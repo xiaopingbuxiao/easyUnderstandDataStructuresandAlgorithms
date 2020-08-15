@@ -10,39 +10,45 @@
 <body>
   <script>
 
-    // function fn(n) {
-    //   console.trace()
-    //   if (n === 1 || n === 0) {
-    //     return n
+
+
+
+    // function sequentialSearch(array, value) {
+    //   for (let i = 0; i < array.length; i++) {
+    //     if (value === array[i]) {
+    //       return i
+    //     }
     //   }
-    //   return n * fn(n - 1)
+    //   return -1
     // }
-    // // console.log(fn(3))
+    // console.log(sequentialSearch([1, 2, 3], 1))
 
-    // function fibonacci(n) {
-    //   if (n < 1) return 0
-    //   if (n < 2) return 1
-    //   return fibonacci(n - 1) + fibonacci(n - 2)
-    // }
-    // console.time('bb')
-    // console.log(fibonacci(40))
-    // console.timeEnd('bb')
 
-    // // function Fib(n, n1, n2) {
-    // //   if (n === 0) return
-    // //   return Fib(n - 1, n1 + n2, n1)
-    // // }
-    "use strict"
-    function Fib(n, n1, n2) {
-      if (n == 1) {
-        return n2
+
+    function bubbleSort(array) {
+      const { length } = array
+      let cost = 0
+      for (let i = 0; i < length; i++) {
+        cost++
+        for (let j = 0; j < length - 1; j++) {
+          cost++
+          if (array[j] > array[j + 1]) {
+            swap(array, j, j + 1)
+          }
+        }
       }
-      return Fib(n - 1, n2, n1 + n2)
+      console.log(`cost for bubbleSort with inpput size ${length} is ${cost}`)
+      return array
     }
-    console.log(Fib(10,0,1))
-    console.time('a')
-    // console.log(Fib(40,0,1))
-    // console.timeEnd('a')
+
+    function swap(array, a, b) {
+      [array[a], array[b]] = [array[b], array[a]];
+    }
+
+    console.log(bubbleSort([90, 4, 5, 3, 7, 11, 2, 3, 43, 23, 21, 11]))
+
+
+
   </script>
 </body>
 
