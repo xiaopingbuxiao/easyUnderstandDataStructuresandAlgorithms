@@ -12,43 +12,6 @@
 
 
 
-
-    // function sequentialSearch(array, value) {
-    //   for (let i = 0; i < array.length; i++) {
-    //     if (value === array[i]) {
-    //       return i
-    //     }
-    //   }
-    //   return -1
-    // }
-    // console.log(sequentialSearch([1, 2, 3], 1))
-
-
-
-    function bubbleSort(array) {
-      const { length } = array
-      let cost = 0
-      for (let i = 0; i < length; i++) {
-        cost++
-        for (let j = 0; j < length - 1; j++) {
-          cost++
-          if (array[j] > array[j + 1]) {
-            swap(array, j, j + 1)
-          }
-        }
-      }
-      console.log(`cost for bubbleSort with inpput size ${length} is ${cost}`)
-      return array
-    }
-
-    function swap(array, a, b) {
-      [array[a], array[b]] = [array[b], array[a]];
-    }
-
-    console.log(bubbleSort([90, 4, 5, 3, 7, 11, 2, 3, 43, 23, 21, 11]))
-
-
-
   </script>
 </body>
 

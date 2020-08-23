@@ -36,12 +36,37 @@ const setMPA = (ext) => {
   }
 }
 
+const setSpa = function (ext) {
+  let htmlWebpackPlugins = []
+  let entry = {
+    javascript: path.join(__dirname, './src/javascript/index.js')
+  }
+  htmlWebpackPlugins = [new HtmlWebpackPlugin({
+    template: path.join(__dirname, `./pages/javascript.html`),
+    filename: `javascript.html`,
+    chunks: [`javascript`],
+    inject: true,
+    minify: {
+      html5: true,
+      collapseWhitespace: true,
+      preserveLineBreaks: false,
+      minifyCSS: true,
+      minifyJS: true,
+      removeComments: false
+    }
+  })]
+  return {
+    entry,
+    htmlWebpackPlugins
+  }
+}
 
 
 module.exports = (env) => {
   const { production, ext } = env || {}
   const loaders = ext === 'js' ? ['babel-loader'] : ['babel-loader', 'ts-loader']
-  const { entry, htmlWebpackPlugins } = setMPA(ext)
+  const { entry, htmlWebpackPlugins } = setSpa(ext)
+  console.log(entry, htmlWebpackPlugins)
   return {
     entry: entry,
     output: {
